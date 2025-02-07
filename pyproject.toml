@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "automation"
+version = "1.0.0"
+description = "Automation pipelines"
+authors = ["Perficient"]
+
+[tool.poetry.dependencies]
+python = "^3.9.13"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+pylint = "^2.14.5"
+
+[tool.pylint.MASTER]
+fail-under = 9
+disable = "C0114,unspecified-encoding,bare-except,consider-using-with"
+
+[tool.isort]
+line_length = 80
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
