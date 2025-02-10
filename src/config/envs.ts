@@ -6,6 +6,7 @@ interface EnvVars {
   DATABASE_URL: string;
   PRODUCTS_MICROSERVICE_HOST: string;
   PRODUCTS_MICROSERVICE_PORT: number;
+  NATS_SERVERS: string[];
 }
 const envsSchema = joi
   .object({
@@ -13,11 +14,14 @@ const envsSchema = joi
     DATABASE_URL: joi.string().required(),
     PRODUCTS_MICROSERVICE_HOST: joi.string().required(),
     PRODUCTS_MICROSERVICE_PORT: joi.string().required(),
+    NATS_SERVERS: joi.array().items(joi.string().required()),
   })
   .unknown(true);
 
-const { error, value } = envsSchema.validate(process.env);
-
+const { error, value } = envsSchema.validate({
+  ...process.env,
+  NATS_SERVERS: process.env.NATS_SERVERS?.split(','),
+});
 if (error) {
   console.log(`Config val: ${error}`);
 }
@@ -29,4 +33,5 @@ export const envs = {
   databaseUrl: envVars.DATABASE_URL,
   productsMicroserviceHost: envVars.PRODUCTS_MICROSERVICE_HOST,
   productsMicroservicePort: envVars.PRODUCTS_MICROSERVICE_PORT,
+  natsServers: envVars.NATS_SERVERS,
 };
