@@ -8,7 +8,7 @@
 ALTER TABLE "Orderitem" DROP CONSTRAINT "Orderitem_orderId_fkey";
 
 -- AlterTable
-ALTER TABLE "Order" ALTER COLUMN "status" DROP DEFAULT;
+ALTER TABLE "Order" ALTER COLUMN "paid" SET DEFAULT false;
 
 -- DropTable
 DROP TABLE "Orderitem";
