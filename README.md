@@ -32,6 +32,13 @@
 $ npm install
 ```
 
+## Migrations
+
+```bash
+# development
+$ npx prisma migrate dev
+```
+
 ## Compile and run the project
 
 ```bash

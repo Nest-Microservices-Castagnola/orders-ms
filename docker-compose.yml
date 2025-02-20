@@ -3,8 +3,8 @@ services:
     container_name: orders-database
     image: postgres:14
     restart: always
-    # volumes:
-    #   - ./postgres-data:/var/lib/postgresql/data
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
