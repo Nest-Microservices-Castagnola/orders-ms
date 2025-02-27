@@ -79,7 +79,10 @@ export class OrdersService extends PrismaClient implements OnModuleInit {
     }
   }
 
-  async findAll(orderPaginationDto: OrderPaginationDto) {
+  async findAll(orderPaginationDto: OrderPaginationDto): Promise<{
+    data: Order[];
+    meta: { totalPages: number; currentPage: number; lastPage: number };
+  }> {
     const totalPages: number = await this.order.count({
       where: {
         status: orderPaginationDto.status,

@@ -16,7 +16,10 @@ export class OrdersController {
   }
 
   @MessagePattern('findAllOrders')
-  findAll(@Payload() orderPaginationDto: OrderPaginationDto) {
+  findAll(@Payload() orderPaginationDto: OrderPaginationDto): Promise<{
+    data: Order[];
+    meta: { totalPages: number; currentPage: number; lastPage: number };
+  }> {
     return this.ordersService.findAll(orderPaginationDto);
   }
 
