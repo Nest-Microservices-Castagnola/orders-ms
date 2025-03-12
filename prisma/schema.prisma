@@ -18,6 +18,7 @@ enum OrderStatus {
   PAID
   DELIVERED
   CANCELLED
+  CONFIRMED
 }
 
 model Order {

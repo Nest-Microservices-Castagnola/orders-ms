@@ -179,7 +179,7 @@ export class OrdersService extends PrismaClient implements OnModuleInit {
     const order: Order = await this.order.update({
       where: { id: orderId },
       data: {
-        status: 'PAID',
+        status: 'CONFIRMED',
         paid: true,
         paidAt: new Date(),
         stripeChargeId: stripePaymentIntentId,
