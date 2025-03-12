@@ -4,7 +4,7 @@ import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from '@prisma/client';
 import { OrderPaginationDto } from './dto/order-pagination.dto';
-import { UpdateOrderStatusDto } from './dto';
+import { PaidOrderDto, UpdateOrderStatusDto } from './dto';
 
 @Controller()
 export class OrdersController {
@@ -40,7 +40,7 @@ export class OrdersController {
   }
 
   @EventPattern('payment.succeeded')
-  paidOrder(@Payload() paydOrderDto: any): void {
-    this.logger.log(`Payment succeeded for order ${paydOrderDto.orderId}`);
+  paidOrder(@Payload() paydOrderDto: PaidOrderDto): Promise<Order> {
+    return this.ordersService.paidOrder(paydOrderDto);
   }
 }
