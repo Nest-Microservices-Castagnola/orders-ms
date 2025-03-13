@@ -41,6 +41,7 @@ export class OrdersController {
 
   @EventPattern('payment.succeeded')
   paidOrder(@Payload() paydOrderDto: PaidOrderDto): Promise<Order> {
+    this.logger.log(`Payment succeeded for order ${paydOrderDto.orderId}`);
     return this.ordersService.paidOrder(paydOrderDto);
   }
 }
